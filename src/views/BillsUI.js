@@ -49,10 +49,26 @@ const rows = (data) => {
         .sort((a, b) => {
           return new Date(b.date) - new Date(a.date);
         })
-        .map((bill) => row(bill))
+        .map((bill) => {
+          return row(bill);
+          //  date: formatDate(doc.data().date)
+        })
         .join("")
     : "";
 };
+
+// const rows = (data) => {
+//   const mavar =
+//     data && data.length
+//       ? data.sort((a, b) => {
+//           return new Date(b.date) - new Date(a.date);
+//         })
+//       : // .map((bill) => row(bill))
+//         // .join("")
+//         "";
+//   console.log(mavar);
+//   return mavar;
+// };
 
 export default ({ data: bills, loading, error }) => {
   const modal = () => `
