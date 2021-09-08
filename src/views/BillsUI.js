@@ -2,13 +2,16 @@ import Actions from "./Actions.js";
 import ErrorPage from "./ErrorPage.js";
 import LoadingPage from "./LoadingPage.js";
 import VerticalLayout from "./VerticalLayout.js";
+import { formatDate } from "../app/format.js";
+
+// console.log(formatDate);
 
 const row = (bill) => {
   return `
     <tr>
       <td>${bill.type}</td>
       <td>${bill.name}</td>
-      <td>${bill.date}</td>
+      <td>${formatDate(bill.date)}</td>
       <td>${bill.amount} €</td>
       <td>${bill.status}</td>
       <td>
@@ -17,30 +20,6 @@ const row = (bill) => {
     </tr>
     `;
 };
-
-// const rows = (data) => {
-//   sortData(data);
-//   return data && data.length ? data.map((bill) => row(bill)).join("") : "";
-// };
-
-// const sortData = (data) => {
-//   return  for (let i = 0; i < propArray.length; i++) {
-
-//     };
-// };
-
-// const rows = (data) => {
-//   console.log(data);
-//   console.log([...data].sort((a, b) => (a < b ? 1 : -1)));
-//   return (
-//     data.sort((a, b) => (a < b ? 1 : -1)),
-//     data && data.length ? data.map((bill) => row(bill)).join("") : ""
-//   );
-// };
-
-// const rows = (data) => {
-//   return data && data.length ? data.map((bill) => row(bill)).join("") : "";
-// };
 
 // for data sort Date "b - a" for validate test
 const rows = (data) => {
@@ -51,24 +30,10 @@ const rows = (data) => {
         })
         .map((bill) => {
           return row(bill);
-          //  date: formatDate(doc.data().date)
         })
         .join("")
     : "";
 };
-
-// const rows = (data) => {
-//   const mavar =
-//     data && data.length
-//       ? data.sort((a, b) => {
-//           return new Date(b.date) - new Date(a.date);
-//         })
-//       : // .map((bill) => row(bill))
-//         // .join("")
-//         "";
-//   console.log(mavar);
-//   return mavar;
-// };
 
 export default ({ data: bills, loading, error }) => {
   const modal = () => `
@@ -87,7 +52,7 @@ export default ({ data: bills, loading, error }) => {
       </div>
     </div>
   `;
-
+  // return LoadingPage();
   if (loading) {
     return LoadingPage();
   } else if (error) {
