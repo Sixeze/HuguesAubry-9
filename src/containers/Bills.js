@@ -3,8 +3,14 @@ import { formatDate, formatStatus } from "../app/format.js";
 import Logout from "./Logout.js";
 import { ROUTES_PATH } from "../constants/routes.js";
 
+// formatDate,
+
 export default class {
   constructor({ document, onNavigate, firestore, localStorage }) {
+    console.log(document);
+    console.log(onNavigate);
+    console.log(firestore);
+    console.log(localStorage);
     this.document = document;
     this.onNavigate = onNavigate;
     this.firestore = firestore;
@@ -51,7 +57,7 @@ export default class {
               try {
                 return {
                   ...doc.data(),
-                  //  date: formatDate(doc.data().date),
+                  date: formatDate(doc.data().date),
                   status: formatStatus(doc.data().status),
                 };
               } catch (e) {
